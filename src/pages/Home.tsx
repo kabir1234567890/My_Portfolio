@@ -4,18 +4,14 @@ import {
   Typography,
   Button,
   Card,
-  Avatar,
   CardContent,
-  CardHeader,
-  CardMedia,
-  IconButton,
+  Avatar,
 } from "@mui/material";
 import React from "react";
 import Typewriter from "typewriter-effect";
 import { Link } from "react-router-dom";
 import "./style.css";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { red } from "@mui/material/colors";
 
 const HomeBanner = () => {
   const image = process.env.REACT_APP_LOGO_PATH + "homeBanner.png";
@@ -128,11 +124,45 @@ const ISpecialize = () => {
     </Box>
   );
 };
+
+const CreativeProcess = () => {
+  return (
+    <Box>
+      <Box sx={{ m: 3 }}>
+        <Typography
+          variant="h4"
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
+          My Creative Process
+        </Typography>
+        <div className="underLine"></div>
+      </Box>
+      <Box sx={{ m: 3 }}>
+        <Typography
+          variant="h6"
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
+          I Follow My Creative Process to Achieve My Desired Goal
+        </Typography>
+      </Box>
+      <Box>
+        <Grid container spacing={2}>
+          <Grid lg={3} md={4} sm={6} xs={1}>
+            <Avatar>
+              <DescriptionIcon />
+            </Avatar>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
+  );
+};
 const Home = () => {
   return (
     <>
       <HomeBanner />
       <ISpecialize />
+      <CreativeProcess />
     </>
   );
 };
