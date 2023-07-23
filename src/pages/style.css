@@ -1,8 +1,15 @@
 .bannerImage {
-  height: 100vh;
-  width: auto;
+  height: auto;
+  width: 100%;
 }
 
 .homeTitle {
+  margin: auto;
+}
+
+.underLine {
+  height: 3px;
+  width: 100px;
+  background-color: #007bff;
   margin: auto;
 }
