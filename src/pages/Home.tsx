@@ -6,15 +6,15 @@ import {
   Card,
   CardContent,
   Avatar,
+  CardActionArea,
 } from "@mui/material";
 import React from "react";
 import Typewriter from "typewriter-effect";
 import { Link } from "react-router-dom";
-import "./style.css";
 import DescriptionIcon from "@mui/icons-material/Description";
 
 const HomeBanner = () => {
-  const image = process.env.REACT_APP_LOGO_PATH + "homeBanner.png";
+  const image = process.env.REACT_APP_LOGO_PATH + "my_full_image.png";
   return (
     <Box sx={{ m: 3 }}>
       <Grid container>
@@ -126,6 +126,23 @@ const ISpecialize = () => {
 };
 
 const CreativeProcess = () => {
+  const cardsData = [
+    {
+      title: "Understand Client Needs",
+      description:
+        "In this initial phase, I take the time to thoroughly understand my client's requirements, goals, and vision for their project. Through detailed discussions and careful analysis, I ensure a clear understanding of the project's purpose and objectives.",
+    },
+    {
+      title: "Design and Develop",
+      description:
+        "Once the requirements are clear, I proceed to design and develop a customized solution. This involves creating wireframes, prototypes, and user interfaces that not only meet the functional specifications but also provide an exceptional user experience. Using the latest technologies, I bring designs to life with clean, efficient, and scalable code.",
+    },
+    {
+      title: "Test, Optimize, and Launch",
+      description:
+        "Quality assurance is paramount in my development process. Rigorous testing is conducted to identify and fix any potential issues. Performance optimization ensures fast loading times and a seamless user experience. Once satisfied with the results, I assist in the deployment and launch of the project.",
+    },
+  ];
   return (
     <Box>
       <Box sx={{ m: 3 }}>
@@ -146,13 +163,61 @@ const CreativeProcess = () => {
         </Typography>
       </Box>
       <Box>
-        <Grid container spacing={2}>
-          <Grid lg={3} md={4} sm={6} xs={1}>
-            <Avatar>
-              <DescriptionIcon />
-            </Avatar>
-          </Grid>
-        </Grid>
+        <Box
+          sx={{
+            ml: 3,
+            mr: 1,
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 2,
+            flexWrap: "wrap",
+          }}
+        >
+          {cardsData.map((card, index) => (
+            <Card
+              key={index}
+              sx={{ maxWidth: 345, margin: "auto", minHeigth: 250 }}
+            >
+              <CardActionArea>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 2,
+                  }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 80,
+                      height: 80,
+                      backgroundColor: "#007BFF",
+                      color: "white",
+                      transition: "transform 0.3s ease-in-out",
+                      "&:hover": {
+                        transform: "scale(1.2)", // Enlarge to 120% on hover
+                      },
+                    }}
+                  >
+                    <DescriptionIcon sx={{ fontSize: 60 }} />
+                  </Avatar>
+                </Box>
+                <CardContent sx={{ textAlign: "center" }}>
+                  <Typography
+                    sx={{ fontWeight: "bold" }}
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                  >
+                    {card.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {card.description}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

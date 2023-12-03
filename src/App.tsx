@@ -3,7 +3,8 @@ import "./App.css";
 import Navbar from "./Component/Navbar/Navbar";
 import MainRoute from "./mainroute/MainRoute";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
+import Footer from "./Component/Navbar/Footer";
 
 function App() {
   const theme = createTheme({
@@ -31,14 +32,15 @@ function App() {
     // Additional theme configurations...
   });
   return (
-    <div className="App">
+    <Box className="App">
       <ThemeProvider theme={theme}>
         <Router>
           <Navbar />
           <MainRoute />
+          <Footer />
         </Router>
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }
 
