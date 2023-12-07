@@ -91,12 +91,12 @@ const Navbar = () => {
               <MenuItem component={Link} to="/" onClick={handleMenuClose}>
                 Home
               </MenuItem>
-              <MenuItem component={Link} to="/blog" onClick={handleMenuClose}>
-                Blogs
-              </MenuItem>
               <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
-                Blogs
+                About
               </MenuItem>
+              {/* <MenuItem component={Link} to="/blog" onClick={handleMenuClose}>
+                Blogs
+              </MenuItem> */}
               <MenuItem
                 component={Link}
                 to="/contact"
@@ -114,9 +114,9 @@ const Navbar = () => {
             <Button component={Link} to="/about" color="inherit" sx={{ mx: 1 }}>
               About
             </Button>
-            <Button component={Link} to="/blog" color="inherit" sx={{ mx: 1 }}>
+            {/* <Button component={Link} to="/blog" color="inherit" sx={{ mx: 1 }}>
               Blogs
-            </Button>
+            </Button> */}
             <Button
               component={Link}
               to="/contact"

@@ -1,7 +1,10 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React from "react";
 
 export const Blogs = () => {
   return (
-    <div>Blogs</div>
-  )
-}
+    <Box>
+      <Box sx={{ display: "flex" }}></Box>
+    </Box>
+  );
+};

@@ -68,9 +68,9 @@ export default function Footer() {
               <Typography sx={link} component={Link} to="/about">
                 About
               </Typography>
-              <Typography sx={link} component={Link} to="/blogs">
+              {/* <Typography sx={link} component={Link} to="/blogs">
                 Blogs
-              </Typography>
+              </Typography> */}
               <Typography sx={link} component={Link} to="/contact">
                 Contact
               </Typography>
