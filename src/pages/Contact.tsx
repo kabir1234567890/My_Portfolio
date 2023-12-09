@@ -1,8 +1,24 @@
-import { Box, Button, Card, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CircularProgress,
+  IconButton,
+  Snackbar,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import CloseIcon from "@mui/icons-material/Close";
 import * as Yup from "yup";
+import emailjs from "emailjs-com";
+import { Fragment, useState } from "react";
 
 export const Contact = () => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("First Name is required"),
 
@@ -19,8 +35,37 @@ export const Contact = () => {
   // const isSmallScreen = useMediaQuery((theme: any) =>
   //   theme.breakpoints.down("xs")
   // );
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const theme = useTheme();
   return (
     <Box sx={{ mt: 3 }}>
+      {loading && (
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: theme.zIndex.modal + 1, // Ensure the loader is above other content
+          }}
+        >
+          <CircularProgress
+            sx={{
+              color: theme.palette.primary.main, // Set the color to your primary theme color
+            }}
+            size={50}
+            thickness={5}
+          />
+        </Box>
+      )}
       <Card
         sx={{
           maxWidth: "600px",
@@ -46,8 +91,37 @@ export const Contact = () => {
             description: "",
           }}
           validationSchema={validationSchema}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values, { resetForm }) => {
+            setLoading(true);
+            const emailParams = {
+              to_email: values.email,
+              message: values.description,
+              email: values.email,
+              topic: values.topic,
+              to_name: "kabir hawa",
+              from_name: `${values.firstName} ${values.lastName}`,
+            };
+
+            // Send the email
+            emailjs
+              .send(
+                "service_fz2fc4t",
+                "template_yfi6stn",
+                emailParams,
+                "78pneQC1siawrKCpq"
+              )
+              .then(() => {
+                setMessage("Thanks for contacting me!");
+                setOpen(true);
+                setLoading(false);
+                resetForm();
+              })
+              .catch(() => {
+                setMessage(
+                  "Sorry there is Technical issue please try tommorow"
+                );
+                setLoading(false);
+              });
           }}
         >
           <Form>
@@ -125,6 +199,24 @@ export const Contact = () => {
           </Form>
         </Formik>
       </Card>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={message ? message : "sorry for inconvinence"}
+        action={
+          <Fragment>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              sx={{ p: 0.5 }}
+              onClick={handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Fragment>
+        }
+      />
     </Box>
   );
 };
